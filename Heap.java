@@ -1,5 +1,6 @@
 import java.util.*;
 
+// using interface to make building a certain type of heap more efficient
 public interface Heap {
 
     // abstract methods

@@ -1,15 +1,28 @@
-import java.util.*;
-
-IMPLEMENT TRY CATCH STATEMENTSSSSSSSSSSSSSSSSSSSSSSS
 public class Main {
-    public static void main(String[] args) {
+    // testing for normal heaps
+    public static void testHeap(String type) {
+        Heap heapOne;
+        if (type.equals("Max-Heap")) {
+            heapOne = new MaxHeap(10);
+        } else if (type.equals("Min-Heap")) {
+            heapOne = new MinHeap(10);
+        } else if (type.equals("Empty Max-Heap") || type.equals("Empty Min-Heap")) {
+            testEmptyHeap(type);
+            return;
+        } else {
+            System.out.println("Error, invalid heap type");
+            return;
+        }
+
+        System.out.println("\n\n\t\t=======================================================");
+        System.out.println("\t\t\t\t\t\t" + type + " testing");
+        System.out.println("\t\t=======================================================");
         System.out.println("Pre-Heap array:");
-        Heap heapOne = new MaxHeap(10);
         heapOne.bfsHeap();
         System.out.println("-------------");
 
 
-        System.out.println("Max-Heap after insertion of 10 elements");
+        System.out.println(type + " after insertion of 10 elements");
         heapOne.insert(42);
         heapOne.insert(68);
         heapOne.insert(35);
@@ -24,33 +37,92 @@ public class Main {
         System.out.println("-------------");
 
 
-        System.out.println("Max-Heap, insert test - inserting 100");
+        System.out.println(type + ", Insert Test - inserting 100");
         heapOne.insert(100);
         heapOne.bfsHeap();
         System.out.println("-------------");
 
-        System.out.println("Max-Heap, insert test - inserting 0");
+        System.out.println(type + ", Insert Test - inserting 0");
         heapOne.insert(0);
         heapOne.bfsHeap();
         System.out.println("-------------");
 
-        System.out.println("Max-Heap, insert test - inserting 43");
+        System.out.println(type + ", Insert Test - inserting 43");
         heapOne.insert(43);
         heapOne.bfsHeap();
         System.out.println("-------------");
 
-        System.out.println("Max-Heap, extract test");
+        System.out.println(type + ", Extract test");
         System.out.println("Extracted value: " + heapOne.extract());
         heapOne.bfsHeap();
         System.out.println("-------------");
 
+        System.out.println(type + ", Peek test");
+        System.out.println("Peeked value: " + heapOne.peek());
+        System.out.println("-------------");
 
-        System.out.println("=======================================================");
-        System.out.println("=======================================================");
-        System.out.println("Pre-Heap array:");
-        Heap heapTwo = new MinHeap(10);
-        heapTwo.bfsHeap();
-        System.out.println("Min-Heap: BFS (level order)");
-        heapTwo.bfsHeap();
+        System.out.println(type + ", Size Test");
+        System.out.println("Size: " + heapOne.size());
+        System.out.println("-------------");
+
+        System.out.println(type + ", is_empty Test");
+        System.out.println("Is it empty?: " + heapOne.is_empty());
+        System.out.println("-------------");
+    }
+
+    // testing for empty heap
+    public static void testEmptyHeap(String type) {
+        Heap heapTwo;
+        if (type.equals("Empty Max-Heap")) {
+            heapTwo = new MaxHeap(10);
+        } else if (type.equals("Empty Min-Heap")) {
+            heapTwo = new MinHeap(10);
+        } else {
+            System.out.println("Error, invalid heap type");
+            return;
         }
+
+        System.out.println("\n\n\t\t=======================================================");
+        System.out.println("\t\t\t\t\t\t" + type + " Testing");
+        System.out.println("\t\t=======================================================");
+        System.out.println("Pre-Heap array:");
+        heapTwo.bfsHeap();
+        System.out.println("-------------");
+
+        System.out.println(type + ", Insert and then Extract test");
+        heapTwo.insert(13);
+        System.out.println("Inserted 13, now extracting 13");
+        heapTwo.bfsHeap();
+        heapTwo.extract();
+        System.out.println("13 Extracted");
+        heapTwo.bfsHeap();
+        System.out.println("-------------");
+
+
+        System.out.println(type + ", Extract Test");
+        System.out.println("Extracted value: " + heapTwo.extract());
+        heapTwo.bfsHeap();
+        System.out.println("-------------");
+
+        System.out.println(type + ", Peek Test");
+        System.out.println("Peeked value: " + heapTwo.peek());
+        System.out.println("-------------");
+
+        System.out.println(type + ", Size Test");
+        System.out.println("Size: " + heapTwo.size());
+        System.out.println("-------------");
+
+        System.out.println(type + ", is_empty Test");
+        System.out.println("Is it empty?: " + heapTwo.is_empty());
+        System.out.println("-------------");
+    }
+
+    // main
+    public static void main(String[] args) {
+        testHeap("Max-Heap");
+        testEmptyHeap("Empty Max-Heap");
+        testHeap("Min-Heap");
+        testEmptyHeap("Empty Min-Heap");
+    }
+
 }
